@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     let x = Math.floor(Math.random() * 3) + 1;
     if (x === 1) {
@@ -23,35 +20,30 @@ function getHumanChoice() {
     }
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        console.log("Tie! Both Choose " + humanChoice);
-    } else if (humanChoice === "Rock" && computerChoice === "Paper") {
-        console.log("You lose! Paper beats rock.");
-        computerScore += 1;
-    } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-        console.log("You win! Rock beats scissors.");
-        humanScore += 1;
-    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
-        console.log("You win! Paper beats rock.");
-        humanScore += 1;
-    } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
-        console.log("You lose! Scissors beat paper.");
-        computerScore += 1;
-    } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
-        console.log("You lose! Rock beats scissors.");
-        computerScore += 1;
-    } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-        console.log("You win! Scissors beats paper.");
-        humanScore += 1;
-    }
-}
-
-
 function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
     for (let i = 1; i <= 5; i++) {
         console.log(playRound(getHumanChoice(), getComputerChoice()));
     }
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            console.log("Tie! Both Choose " + humanChoice);
+        } else if (
+            humanChoice === "Rock" && computerChoice === "Scissors" ||
+            humanChoice === "Paper" && computerChoice === "Rock" ||
+            humanChoice === "Scissors" && computerChoice === "Paper"
+        ) {
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            humanScore += 1;
+        } else {
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore += 1;
+        }
+    }
+    
     if (humanScore > computerScore) {
         console.log("You win! " + humanScore + " to " + computerScore);
     } else if (computerScore > humanScore) {
