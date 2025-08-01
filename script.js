@@ -23,10 +23,6 @@ function getHumanChoice() {
     }
 }
 
-
-//console.log(getComputerChoice());
-//console.log(getHumanChoice());
-
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         console.log("Tie! Both Choose " + humanChoice);
